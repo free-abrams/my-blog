@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+	Route::get('/article-post', 'ArticleController@index')->name('article-post.index');
+	Route::get('/article-post/{id}', 'ArticleController@show')->name('article-post.show');
+});

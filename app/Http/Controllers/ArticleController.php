@@ -14,9 +14,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $data = Article::paginate(15);
-
-        \Response::json($data, '200');
+        $data = Article::orderByDesc('created_at')->simplePaginate();
+        
+        $posts = $data;
+        
+        return view('blog.layouts.index', compact('data', 'posts'));
     }
 
     /**
@@ -48,7 +50,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Article::find($id);
+        
+        return view('blog.layouts.post', compact('post'));
     }
 
     /**
