@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Article;
+use App\Models\Tag;
 use Encore\Admin\Form;
 use Encore\Admin\Http\Controllers\AdminController;
 use Encore\Admin\Show;
@@ -32,7 +33,8 @@ class ArticleController extends AdminController
         $table->column('title', __('Title'));
         $table->column('image', __('Image'))->image();
         $table->column('slug', __('Slug'));
-        $table->column('content', __('Content'));
+        //$table->column('content', __('Content'));
+	    //$table->belongsToMany('tags', Article::class, __('Tags'));
         $table->column('created_at', __('Created at'));
         $table->column('updated_at', __('Updated at'));
 
@@ -73,6 +75,7 @@ class ArticleController extends AdminController
         $form->image('image', __('Image'));
         $form->text('slug', __('Slug'));
         $form->editor('content', __('Content'));
+        $form->multipleSelect('tags', __('Tags'))->options(Tag::all()->pluck('name', 'id'));
 
         if ($form->isCreating() || \Route::currentRouteName() == 'admin.articles.update') {
             $form->saving(function (Form $form) {

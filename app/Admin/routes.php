@@ -13,5 +13,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('articles', ArticleController::class);
+    $router->resource('tags', TagController::class);
 });
 Route::post('/upload', 'App\Http\Controllers\UploadController@upload');
