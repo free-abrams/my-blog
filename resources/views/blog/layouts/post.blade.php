@@ -4,7 +4,7 @@
 ])
 
 @section('page-header')
-    <header class="masthead" style="">
+    <header class="masthead" style="background-image:url('{{asset('/img/post-bg.jpg')}}')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -16,7 +16,7 @@
                             Posted on {{ $post->published_at }}
                             @if ($post->tags->count())
                                 in
-{{--                                {!! join(', ', $post->tagLinks()) !!}--}}
+                                {!! join(', ', $post->tagLinks()) !!}
                             @endif
                         </span>
                     </div>
@@ -32,43 +32,24 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 {{-- 文章详情 --}}
-                <article>
+                <article style="text-align: center;">
                     {!! $post->content !!}
                 </article>
 
                 <hr>
 
                 {{-- 上一篇、下一篇导航 --}}
-{{--                <div class="clearfix">--}}
-{{--                    --}}{{-- Reverse direction --}}
-{{--                    @if ($tag && $tag->reverse_direction)--}}
-{{--                        @if ($post->olderPost($tag))--}}
-{{--                            <a class="btn btn-primary float-left" href="{!! $post->olderPost($tag)->url($tag) !!}">--}}
-{{--                                ←--}}
-{{--                                Previous {{ $tag->tag }} Post--}}
-{{--                            </a>--}}
-{{--                        @endif--}}
-{{--                        @if ($post->newerPost($tag))--}}
-{{--                            <a class="btn btn-primary float-right" href="{!! $post->newerPost($tag)->url($tag) !!}">--}}
-{{--                                Next {{ $tag->tag }} Post--}}
-{{--                                →--}}
-{{--                            </a>--}}
-{{--                        @endif--}}
-{{--                    @else--}}
-{{--                        @if ($post->newerPost($tag))--}}
-{{--                            <a class="btn btn-primary float-left" href="{!! $post->newerPost($tag)->url($tag) !!}">--}}
-{{--                                ←--}}
-{{--                                Newer {{ $tag ? $tag->tag : '' }} Post--}}
-{{--                            </a>--}}
-{{--                        @endif--}}
-{{--                        @if ($post->olderPost($tag))--}}
-{{--                            <a class="btn btn-primary float-right" href="{!! $post->olderPost($tag)->url($tag) !!}">--}}
-{{--                                Older {{ $tag ? $tag->tag : '' }} Post--}}
-{{--                                →--}}
-{{--                            </a>--}}
-{{--                        @endif--}}
-{{--                    @endif--}}
-{{--                </div>--}}
+                <div class="clearfix">
+                     Reverse direction
+                            <a class="btn btn-primary float-left" href="">
+                                ←
+                                Previous laravel Post
+                            </a>
+                            <a class="btn btn-primary float-right" href="">
+                                Next php Post
+                                →
+                            </a>
+                </div>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -14,32 +15,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $data = Article::orderByDesc('created_at')->simplePaginate();
+        $posts = Article::orderByDesc('created_at')->simplePaginate();
         
-        $posts = $data;
-        
-        return view('blog.layouts.index', compact('data', 'posts'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('blog.layouts.index', compact('posts'));
     }
 
     /**
@@ -50,42 +28,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $post = Article::find($id);
+        $post = Article::with(['tags'])->find($id);
         
         return view('blog.layouts.post', compact('post'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

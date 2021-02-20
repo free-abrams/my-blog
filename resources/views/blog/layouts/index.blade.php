@@ -1,7 +1,7 @@
 @extends('blog.layouts.master')
 
 @section('page-header')
-    <header class="masthead" style="">
+    <header class="masthead" style="background-image:url('{{asset('/img/post-bg.jpg')}}')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
