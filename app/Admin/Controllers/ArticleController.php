@@ -7,6 +7,8 @@ use Encore\Admin\Form;
 use Encore\Admin\Http\Controllers\AdminController;
 use Encore\Admin\Show;
 use Encore\Admin\Table;
+use Illuminate\Support\Str;
+use function PHPUnit\Framework\isInstanceOf;
 
 class ArticleController extends AdminController
 {
@@ -70,14 +72,18 @@ class ArticleController extends AdminController
         $form->text('title', __('Title'));
         $form->image('image', __('Image'));
         $form->text('slug', __('Slug'));
-        $form->textarea('content', __('Content'));
+        $form->editor('content', __('Content'));
 
         if ($form->isCreating() || \Route::currentRouteName() == 'admin.articles.update') {
             $form->saving(function (Form $form) {
-                $path = $form->image->getPathName();
-                $upload_path = \Storage::disk('oss')->put('', $form->image);
-                $form->image = env('ALIOSS_HOST').'/'.$upload_path;
-                \Storage::disk('local')->delete($path);
+
+	            if ($form->image instanceof \Illuminate\Http\UploadedFile) {
+	                $path = $form->image->getPathName();
+	                $upload_path = \Storage::disk('oss')->put('', $form->image);
+	                $form->image = env('ALIOSS_HOST').'/'.$upload_path;
+	                \Storage::disk('local')->delete($path);
+	            }
+
             });
         }
 

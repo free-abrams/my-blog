@@ -15,6 +15,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jacobcyl/ali-oss-storage": "^2.1",
+        "laravel-admin-ext/wang-editor": "^2.0",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "michelf/php-markdown": "^1.9"

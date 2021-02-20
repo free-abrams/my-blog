@@ -14,3 +14,4 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('articles', ArticleController::class);
 });
+Route::post('/upload', 'App\Http\Controllers\UploadController@upload');
