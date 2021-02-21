@@ -20,7 +20,7 @@ class Article extends Model
 	 * @param string $base
 	 * @return array
 	 */
-	public function tagLinks($base = '/blog?tag=%TAG%')
+	public function tagLinks($base = '/articles-post?tag=%TAG%')
 	{
 	    $tags = $this->tags()->get()->pluck('name')->all();
 	    $return = [];

@@ -28,12 +28,16 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
                 {{-- 文章详情 --}}
-                <article style="text-align: center;">
-                    {!! $post->content !!}
+                <article >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                                {!! $post->content !!}
+                            </div>
+                        </div>
+                    </div>
+
                 </article>
 
                 <hr>
@@ -50,7 +54,5 @@
                                 →
                             </a>
                 </div>
-            </div>
-        </div>
-    </div>
+
 @stop
