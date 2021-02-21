@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    redirect()->route('article-post.index');
+    return redirect()->route('article-post.index');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
